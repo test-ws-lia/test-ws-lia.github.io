@@ -3,47 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de [Votre Nom] - Photographe</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sarah Miguet Cadet - Photographe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            padding: 20px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        nav {
+            margin-bottom: 30px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        .hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
     <header>
+        <h1>Sarah Miguet Cadet</h1>
         <nav>
             <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#galerie">Galerie</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#portraits">Portraits</a></li>
+                <li><a href="#mariages">Mariages</a></li>
+                <li><a href="#packshot">Packshot Produit</a></li>
+                <li><a href="#culinaire">Culinaire</a></li>
+                <li><a href="#duo">DUO, Familles & Grossesse</a></li>
+                <li><a href="#autres">Autres</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
-        <section id="accueil">
-            <h1>[Votre Nom] - Photographe</h1>
-            <p>Bienvenue sur mon portfolio de photographie</p>
+        <h2>PHOTOGRAPHE.</h2>
+        <section class="hero">
+            <img src="chemin/vers/votre/image.jpg" alt="Packshot produit">
+            <div class="hero-text">Packshot produit</div>
         </section>
-
-        <section id="galerie">
-            <h2>Galerie</h2>
-            <!-- Ajoutez ici vos images -->
-        </section>
-
-        <section id="blog">
-            <h2>Blog</h2>
-            <!-- Ajoutez ici vos articles de blog -->
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <form>
-                <!-- Ajoutez ici votre formulaire de contact -->
-            </form>
-        </section>
+        <!-- Ajoutez ici d'autres sections pour chaque catégorie de photographie -->
     </main>
-
-    <footer>
-        <p>&copy; 2024 [Votre Nom]. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
