@@ -11,8 +11,9 @@ function loadBlogEntries() {
         const entryDiv = document.createElement('div');
         entryDiv.className = 'blog-entry';
         entryDiv.innerHTML = `
-            <h3><a href="pages_blog/${entry.file}">${entry.title}</a></h3>
+            <h3>${entry.title}</h3>
             <p>Publié le ${entry.date}</p>
+            <a href="pages_blog/${entry.file}" class="read-more">Lire la suite</a>
         `;
         blogEntriesDiv.appendChild(entryDiv);
     });

@@ -85,13 +85,48 @@ footer {
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    display: inline-block;
-    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.blog-entry:hover {
+    transform: scale(1.05);
 }
 
 .blog-entries {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
+}
+
+.blog-entry h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.blog-entry p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.blog-entry .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.blog-entry .read-more:hover {
+    background-color: #2980b9;
 }
