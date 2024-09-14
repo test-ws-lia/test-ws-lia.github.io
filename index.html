@@ -71,10 +71,77 @@
     </header>
     <main>
         <h2>PHOTOGRAPHE.</h2>
-        <section class="hero">
-            <img src="ressource/portrait.jpg" alt="Packshot produit">
-            <div class="hero-text">Packshot produit</div>
-        </section>
+        <title>Carrousel d'images automatique</title>
+    <style>
+        .carousel-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .carousel-button.prev { left: 10px; }
+        .carousel-button.next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="ressource/portrait.jpg" alt="Image 1">
+            <img src="ressource/chapelle.jpg" alt="Image 2">
+            <img src="ressource/art.jpg" alt="Image 3">
+            <!-- Ajoutez autant d'images que vous le souhaitez -->
+        </div>
+        <button class="carousel-button prev">&lt;</button>
+        <button class="carousel-button next">&gt;</button>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        nextButton.addEventListener('click', nextImage);
+        prevButton.addEventListener('click', prevImage);
+
+        // Défilement automatique
+        setInterval(nextImage, 5000); // Change l'image toutes les 5 secondes
+    </script>
+</body>
         <!-- Ajoutez ici d'autres sections pour chaque catégorie de photographie -->
     </main>
 </body>
