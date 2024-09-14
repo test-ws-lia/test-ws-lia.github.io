@@ -71,119 +71,126 @@
     </header>
     <main>
         <h2>PHOTOGRAPHE.</h2>
-        <title>Carrousel d'images automatique amélioré</title>
-    <style>
-        .carousel-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-item {
-            flex: 0 0 100%;
-            width: 100%;
-        }
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .carousel-button.prev { left: 10px; }
-        .carousel-button.next { right: 10px; }
-        .carousel-indicators {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-        }
-        .indicator.active {
-            background: white;
-        }
-    </style>
-</head>
-<body>
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="carousel-item"><img src="ressource/art.jpg" alt="Image 1"></div>
-            <div class="carousel-item"><img src="ressource/chapelle.jpg" alt="Image 2"></div>
-            <div class="carousel-item"><img src="ressource/portrait.jpg" alt="Image 3"></div>
+        <title>Carrousel pleine largeur</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            .carousel-container {
+                width: 100%;
+                height: 50vh; /* Ajustez cette valeur pour modifier la hauteur du bandeau */
+                overflow: hidden;
+                position: relative;
+            }
+            .carousel {
+                display: flex;
+                transition: transform 0.5s ease;
+                height: 100%;
+            }
+            .carousel-item {
+                flex: 0 0 100%;
+                width: 100%;
+                height: 100%;
+            }
+            .carousel-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ceci assure que l'image couvre tout l'espace sans déformation */
+                object-position: center; /* Centre l'image */
+            }
+            .carousel-button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0,0,0,0.5);
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 10;
+            }
+            .carousel-button.prev { left: 10px; }
+            .carousel-button.next { right: 10px; }
+            .carousel-indicators {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+                z-index: 10;
+            }
+            .indicator {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.5);
+                cursor: pointer;
+            }
+            .indicator.active {
+                background: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item"><img src="ressource/art.jpg" alt="Image 1"></div>
+                <div class="carousel-item"><img src="ressource/chapelle.jpg" alt="Image 2"></div>
+                <div class="carousel-item"><img src="ressource/portrait.jpg" alt="Image 3"></div>
+            </div>
+            <button class="carousel-button prev">&lt;</button>
+            <button class="carousel-button next">&gt;</button>
+            <div class="carousel-indicators"></div>
         </div>
-        <button class="carousel-button prev">&lt;</button>
-        <button class="carousel-button next">&gt;</button>
-        <div class="carousel-indicators"></div>
-    </div>
-
-    <script>
-        const carousel = document.querySelector('.carousel');
-        const items = carousel.querySelectorAll('.carousel-item');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-        const indicators = document.querySelector('.carousel-indicators');
-        let currentIndex = 0;
-
-        // Créer les indicateurs
-        items.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('indicator');
-            dot.addEventListener('click', () => goToSlide(index));
-            indicators.appendChild(dot);
-        });
-
-        function updateIndicators() {
-            document.querySelectorAll('.indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
+    
+        <script>
+            // Le script JavaScript reste le même que dans l'exemple précédent
+            const carousel = document.querySelector('.carousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            const indicators = document.querySelector('.carousel-indicators');
+            let currentIndex = 0;
+    
+            items.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('indicator');
+                dot.addEventListener('click', () => goToSlide(index));
+                indicators.appendChild(dot);
             });
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+            function updateIndicators() {
+                document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+    
+            function goToSlide(index) {
+                currentIndex = index;
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators();
+            }
+    
+            function nextSlide() {
+                goToSlide((currentIndex + 1) % items.length);
+            }
+    
+            function prevSlide() {
+                goToSlide((currentIndex - 1 + items.length) % items.length);
+            }
+    
+            nextButton.addEventListener('click', nextSlide);
+            prevButton.addEventListener('click', prevSlide);
+    
+            let interval = setInterval(nextSlide, 5000);
+    
+            carousel.addEventListener('mouseenter', () => clearInterval(interval));
+            carousel.addEventListener('mouseleave', () => interval = setInterval(nextSlide, 5000));
+    
             updateIndicators();
-        }
-
-        function nextSlide() {
-            goToSlide((currentIndex + 1) % items.length);
-        }
-
-        function prevSlide() {
-            goToSlide((currentIndex - 1 + items.length) % items.length);
-        }
-
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-
-        // Défilement automatique
-        let interval = setInterval(nextSlide, 5000);
-
-        // Pause au survol
-        carousel.addEventListener('mouseenter', () => clearInterval(interval));
-        carousel.addEventListener('mouseleave', () => interval = setInterval(nextSlide, 5000));
-
-        // Initialisation
-        updateIndicators();
-    </script>
+        </script>
+    </body>
 </html>
